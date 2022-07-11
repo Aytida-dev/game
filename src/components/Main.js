@@ -59,9 +59,13 @@ function changeNumbers() {
       }
 
     return (
-        <>
+     <main>
+        <div className="blocks">
         {blocks}
+        </div>
+        <div className="button">
         {!allAreEqual(dice) ?<button onClick={changeNumbers}>Roll</button> :<button onClick={()=>window.location.reload()}>Reset game</button>}
-        </>
+        </div>
+    </main>
     );
 }
