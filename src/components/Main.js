@@ -16,7 +16,7 @@ export default function Main() {
 
     const blocks = dice.map((number, index) => (
         <button key={index} className="block" onClick={(event)=>setConst(event,index)} >
-            <div className="number">{number}</div>
+            {number}
         </button>
     ))
 
@@ -30,6 +30,8 @@ export default function Main() {
             }
         )
         ))
+
+        event.target.classList.toggle("active");
     }    
 
 function changeNumbers() {
@@ -44,11 +46,22 @@ function changeNumbers() {
         }
     })
     setDice(change);
-}
+    }
+
+    function allAreEqual(array) {
+        const result = array.every(element => {
+          if (element === array[0]) {
+            return true;
+          }
+        });
+      
+        return result;
+      }
+
     return (
         <>
         {blocks}
-        <button onClick={changeNumbers}>Roll</button>
+        {!allAreEqual(dice) ?<button onClick={changeNumbers}>Roll</button> :<button onClick={()=>window.location.reload()}>Reset game</button>}
         </>
     );
 }
